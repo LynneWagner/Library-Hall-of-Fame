@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+{% extends 'tracker/base.html'%}
+
+{% block body %}
+ <h1>Welcome to Lynne's Library</h1><br>
+
+<h2>Books</h2>
+{% if all_books %}
+<ul>
+    {% for book in all_books %}
+        <li><a href="{% url 'tracker:book_detail' book.id %}">{{ book.name }}</a></li>
+    {% endfor %}
+</ul>
+{% else %}
+    <h3>There are no books to display</h3>
+{% endif %}
+<br>
+
+<h2>DVD's</h2>
+{% if all_dvds %}
+<ul>
+    {% for dvd in all_dvds %}
+        <li><a href="{% url 'tracker:dvd_detail' dvd.id %}">{{ dvd.dvd_name }}</a></li>
+    {% endfor %}
+</ul>
+{% else %}
+    <h3>There are no DVD's to display</h3>
+{% endif %}
+<br>
+
+<h2>Magazines</h2>
+{% if all_mags %}
+<ul>
+    {% for mag in all_mags %}
+        <li><a href="{% url 'tracker:mags_detail' mag.id %}">{{ mag.mag_name }}</a></li>
+    {% endfor %}
+</ul>
+{% else %}
+    <h3>There are no Magazines to display</h3>
+{% endif %}
+<br>
+<h2>Newspapers</h2>
+
+{% if all_newspapers %}
+<ul>
+    {% for newspaper in all_newspapers %}
+        <li><a href="{% url 'tracker:newspaper_detail' newspaper.id %}">{{ newspaper.newspaper_name }}</a></li>
+    {% endfor %}
+</ul>
+{% else %}
+    <h3>There are no Newspapers to display</h3>
+{% endif %}
+<br>
+<h2>Music</h2>
+
+{% if all_music %}
+<ul>
+    {% for music in all_music %}
+        <li><a href="{% url 'tracker:music_detail' music.id %}">{{ music.music_name }}</a></li>
+    {% endfor %}
+</ul>
+{% else %}
+    <h3>There is no Music to display</h3>
+{% endif %}
+{% endblock %}

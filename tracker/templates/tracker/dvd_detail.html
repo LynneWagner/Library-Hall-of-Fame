@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+{% extends 'tracker/base.html'%}
+{% block title %}Lynne's DVD's{% endblock %}
+
+{% block body %}
+<img src="{{dvd.dvd_cover}}">
+
+<h1>{{ dvd.dvd_name }}</h1>
+{% endblock %}

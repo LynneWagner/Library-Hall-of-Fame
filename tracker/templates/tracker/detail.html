@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+{% extends 'tracker/base.html'%}
+{% block title %}Lynne's Books{% endblock %}
+
+{% block body %}
+<img src="{{book.book_cover}}">
+
+<h1>{{ book.name }} - ({{ book.topic }})</h1>
+<h3> By {{ book.author }}</h3>
+<h3>{{ book.isbn }}</h3>
+{% endblock %}

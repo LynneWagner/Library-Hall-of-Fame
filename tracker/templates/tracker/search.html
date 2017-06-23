@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+{% extends 'tracker/base.html'%}
+
+{% block body %}
+ <h1>Welcome to Lynne's Library</h1><br>
+  <table>
+
+   {% for item in items %}
+   <tr><td>{{ item.name }}</td>
+       <td>{% if item.book %}
+           {% elif item.music %}
+           {% elif item.dvd %}
+           {% elif item.mags %}
+           {% else %}Newspaper {% endif %}
+       </td>
+    </tr>
+   {% endfor %}
+  </table>
+        
+{% endblock %}
