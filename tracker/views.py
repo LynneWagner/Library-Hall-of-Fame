@@ -18,7 +18,7 @@ def index(request):
     query = request.GET.get('query')
     if query:
         
-        items = Item.objects.filter(Q(name__icontains=query) | Q(description__icontains=query) | Q(creator__icontains=query))
+        items = Item.objects.filter(Q(name__icontains=query))
         return render(request, 'tracker/search.html', context={'items':items})
 
     else:
@@ -27,6 +27,16 @@ def index(request):
         all_mags = Mags.objects.all()
         all_newspapers = Newspaper.objects.all()
         context_dict = {'all_books': all_books, 'all_dvds':all_dvds, 'all_mags':all_mags, 'all_newspapers':all_newspapers}
+        return render(request, 'tracker/index.html', context=context_dict)
+
+    if query:
+
+        bookstuff = bookstuff.objects.filter(Q(isbn__icontains=query) | Q(topic__icontains=query))
+        return render (request, 'tracker/search.html', context={'bookstuff':bookstuff})
+
+    else:
+        all_books = Book.objects.all()
+        context_dict = {'all_books': all_books}
         return render(request, 'tracker/index.html', context=context_dict)
 
 def detail(request, book_id):

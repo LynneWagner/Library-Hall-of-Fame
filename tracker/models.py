@@ -6,8 +6,6 @@ from django.template.defaultfilters import slugify
 
 class Item(models.Model):
     name = models.CharField(max_length=250, unique=True)
-    creator = models.CharField(max_length=250)
-    description = models.CharField(max_length=1000)
     slug = models.SlugField(blank=True)
 
     def __str__(self):
@@ -21,23 +19,17 @@ class Item(models.Model):
 
 class Book(models.Model):
     item = models.OneToOneField(Item, blank=True, null=True)
-    topic = models.CharField(max_length=250)
+    name = models.CharField(max_length=250)
+    author = models.CharField(max_length=250)
     isbn = models.CharField(max_length=250)
+    topic = models.CharField(max_length=250)
+    book_cover = models.CharField(max_length=1000)
 
 
-    @property
-    def author(self):
-        return self.item.creator
-    
     @property
     def name(self):
         return self.item.name
 
-    @property
-    def book_cover(self):
-        return self.item.description
-
-    
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
         super(Book, self).save(*args, **kwargs)
@@ -50,13 +42,12 @@ class Book(models.Model):
 
 class DVD(models.Model):
     item = models.OneToOneField(Item, blank=True, null=True)
+    dvd_name = models.CharField(max_length=250)
+    dvd_cover = models.CharField(max_length=250)
+
     @property
     def dvd_name(self):
         return self.item.name
-
-    @property
-    def dvd_cover(self):
-        return self.item.description
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.dvd_name)
@@ -71,6 +62,8 @@ class DVD(models.Model):
 
 class Mags(models.Model):
     item = models.OneToOneField(Item, blank=True, null=True)
+    mag_name = models.CharField(max_length=250)
+    mag_cover = models.CharField(max_length=250)
     
     @property
     def mag_name(self):
@@ -88,6 +81,8 @@ class Mags(models.Model):
 
 class Newspaper(models.Model):
     item = models.OneToOneField(Item, blank=True, null=True)
+    newspaper_name = models.CharField(max_length=250)
+    newspaper_cover = models.CharField(max_length=250)
     
     @property
     def newspaper_name(self):
@@ -105,7 +100,7 @@ class Newspaper(models.Model):
 
 class Music(models.Model):
     item = models.OneToOneField(Item, blank=True, null=True)
-    
+
     @property
     def album(self):
         return self.item.name

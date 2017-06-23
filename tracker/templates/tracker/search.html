@@ -7,14 +7,42 @@
 
    {% for item in items %}
    <tr><td>{{ item.name }}</td>
-       <td>{% if item.book %}
-           {% elif item.music %}
-           {% elif item.dvd %}
-           {% elif item.mags %}
-           {% else %}Newspaper {% endif %}
+    <td>{% if item.book %}
+        <ul>{% for book in all_books %}
+            <li><a href="{% url 'tracker:detail' book.id %}">{{ book.book_name }}</a></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    {% if item.dvd %}
+        <ul>{% for dvd in all_dvd %}
+            <li><a href="{% url 'tracker:dvd_detail' %}">{{ dvd.dvd_name }}</a></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    {% if item.mags %}
+        <ul>{% for mags in all_mags %}
+            <li><a href="{% url 'tracker:mags_detail' %}">{{ mags.mags_name }}</a></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    {% if item.newspaper %}
+        <ul>{% for newspaper in all_newspaper %}
+            <li><a href="{% url 'tracker:newspaper_detail' %}">{{ newspaper.newspaper_name }}</a></li>
+             {% endfor %}
+        </ul>
+    {% endif %}
+    {% if item.music %}
+        <ul>{% for music in all_music %}
+            <li><a href="{% url 'tracker:music_detail' %}">{{ music.music_name }}</a></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
        </td>
     </tr>
    {% endfor %}
   </table>
         
 {% endblock %}
+
+

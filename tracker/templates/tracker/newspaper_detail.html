@@ -1,15 +1,11 @@
 <!DOCTYPE html>
 {% extends 'tracker/base.html'%}
-{% block title %}Lynne's Newspapers{% endblock %}
+{% block title %}Lynne's Papers{% endblock %}
 
 {% block body %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Newspapers</title>
-</head>
-<body>
 
-</body>
-</html>
+<h1>{{ newspaper.newspaper_name }}</h1>
+
+<img src="{{newspaper.newspaper_cover}}">
+
 {% endblock %}
